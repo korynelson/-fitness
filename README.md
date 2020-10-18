@@ -1,2 +1,2 @@
-# -fitness
+hashtagFitness
 fitness tracking app
