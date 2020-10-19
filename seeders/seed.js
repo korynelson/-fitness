@@ -17,6 +17,14 @@ let workoutSeed = [
         weight: 100,
         reps: 10,
         sets: 4
+      },
+      {
+        type: "resistance",
+        name: "Lateral Pull",
+        duration: 20,
+        weight: 100,
+        reps: 10,
+        sets: 4
       }
     ]
   },
