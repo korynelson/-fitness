@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const path = require('path');
 const mongoose = require('mongoose')
-const { Workout, Exercise } = require('../models/index');
+const Workout = require('../models/Workout');
 
 
 router.get('/api/workouts', (req,res) =>{
@@ -25,9 +25,32 @@ router.get('/api/workouts/range', (req,res) =>{
       .catch(err => {
         res.status(400).send(err);
       });
-      
+    });
+
+// Put path to update current workout with new exercise
+router.put('/api/workouts/:id', (req,res) => {
+  // console.log(req.params);
+
+  Workout.findById(req.params.id, (err, workoutById) => {
+    // find all exercises related to the current workout
+    const objExercise = workoutById.exercises
+    console.log("objExercise = ", objExercise)
+    objExercise.push(req.body)
+
+    // Save to db
+    try {
+      const updated = workoutById.save();
+      return res.status(200).send(updated)
+    }
+    catch (err) {
+      return res.status(500).send(err)
+    }
+  });
 
 });
 
+router.post('api/workouts', (req,res) => {
+  
+})
 
 module.exports = router;
