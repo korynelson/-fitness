@@ -38,6 +38,8 @@ function populateChart(data) {
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
+  let dates = workoutDates(data);
+  console.log(dates);
   const colors = generatePalette();
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -48,15 +50,9 @@ function populateChart(data) {
   let lineChart = new Chart(line, {
     type: "line",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
+      // This should be dynamic
+    
+      labels: dates,
       datasets: [
         {
           label: "Workout Duration In Minutes",
@@ -96,15 +92,7 @@ function populateChart(data) {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
+      labels: dates,
       datasets: [
         {
           label: "Pounds",
@@ -205,16 +193,13 @@ function duration(data) {
 
 function calculateTotalWeight(data) {
   let total = [];
-  //This logic is wrong
+  // initial logic in the given material was wrong
   data.forEach((workout,i) => {
     let weight = 0;
     workout.exercises.forEach(exercise => {
       if(exercise.weight){
-        console.log(i);
-        console.log(exercise.weight)
         weight = weight + exercise.weight;
         total[i] = weight;
-        console.log(total)
       }
     });
   });
@@ -232,4 +217,18 @@ function workoutNames(data) {
   });
   
   return workouts;
+}
+
+function workoutDates(data){
+  let workoutDates = [];
+  const options1 = { weekday: 'long', month: 'long', day: 'numeric' };
+  console.log(data)
+  data.forEach(workout => {
+    let date = new Date (workout.day);
+    let weekday = new Intl.DateTimeFormat('en-US', options1).format(date);
+    console.log(weekday);
+    workoutDates.push(`${weekday}`);
+    console.log(workoutDates)
+  })
+  return workoutDates;
 }
