@@ -33,8 +33,18 @@ router.put('/api/workouts/:id', (req,res) => {
 
   Workout.findById(req.params.id, (err, workoutById) => {
     // find all exercises related to the current workout
-    const objExercise = workoutById.exercises
-    console.log("objExercise = ", objExercise)
+    const objExercise = workoutById.exercises;
+
+    console.log(workoutById.totalDuration)
+    if(workoutById.totalDuration !==0){
+      console.log('adding exercise duration to total')
+      workoutById.totalDuration = workoutById.totalDuration + req.body.duration;
+
+    }
+    else{
+      console.log('duration doesn exist yet...')
+      workoutById.totalDuration = req.body.duration;
+    }
     objExercise.push(req.body)
 
     // Save to db
