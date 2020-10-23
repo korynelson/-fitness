@@ -49,8 +49,18 @@ router.put('/api/workouts/:id', (req,res) => {
 
 });
 
-router.post('api/workouts', (req,res) => {
-  
-})
+// POST path to create new workout
+router.post("/api/workouts", (req,res) => {
+  console.log(req.params);
+  const newWorkout = new Workout();
+  try{
+    const updated = newWorkout.save();
+  return res.status(200).send(updated)
+  }
+  catch (err) {
+    return res.status(500).send(err)
+  }
+  });
+
 
 module.exports = router;

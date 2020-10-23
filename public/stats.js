@@ -189,22 +189,33 @@ function populateChart(data) {
 
 function duration(data) {
   let durations = [];
-
-  data.forEach(workout => {
+  // initial logic in the given material was wrong
+  //  workout.exercises.forEach(exercise => {
+  //  durations.push(exercise.duration);
+  //});
+  data.forEach((workout,i) => {
+    let time = 0;
     workout.exercises.forEach(exercise => {
-      durations.push(exercise.duration);
+      time = time + exercise.duration;
+      durations[i]=time;
     });
   });
-
   return durations;
 }
 
 function calculateTotalWeight(data) {
   let total = [];
-
-  data.forEach(workout => {
+  //This logic is wrong
+  data.forEach((workout,i) => {
+    let weight = 0;
     workout.exercises.forEach(exercise => {
-      total.push(exercise.weight);
+      if(exercise.weight){
+        console.log(i);
+        console.log(exercise.weight)
+        weight = weight + exercise.weight;
+        total[i] = weight;
+        console.log(total)
+      }
     });
   });
 
