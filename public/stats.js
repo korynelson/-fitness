@@ -219,6 +219,7 @@ function workoutNames(data) {
   return workouts;
 }
 
+// Make dates for graph based on workouts that were actually entered
 function workoutDates(data){
   console.log(data)
   let workoutDates = [];
@@ -226,11 +227,9 @@ function workoutDates(data){
   data.forEach(workout => {
     let date = new Date (workout.day);
     let weekday = new Intl.DateTimeFormat('en-US', options1).format(date);
-    if (workoutDates.includes(weekday)){
-    }
-    else {
+    
       workoutDates.push(`${weekday}`);
-    }
+    
   })
   return workoutDates;
 }
