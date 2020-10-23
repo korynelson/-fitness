@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const path = require('path');
 const mongoose = require('mongoose')
-const { Workout } = require('../models/index');
-const { Exercise } = require('../models/index');
+const { Workout, Exercise } = require('../models/index');
 
 
 router.get('/api/workouts', (req,res) =>{
@@ -17,6 +16,7 @@ router.get('/api/workouts', (req,res) =>{
 });
 
 router.get('/api/workouts/range', (req,res) =>{
+    //console.log(req.params)
     Workout.find()
     .then(dbWorkout => {
         res.json(dbWorkout);
