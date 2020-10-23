@@ -220,15 +220,17 @@ function workoutNames(data) {
 }
 
 function workoutDates(data){
+  console.log(data)
   let workoutDates = [];
   const options1 = { weekday: 'long', month: 'long', day: 'numeric' };
-  console.log(data)
   data.forEach(workout => {
     let date = new Date (workout.day);
     let weekday = new Intl.DateTimeFormat('en-US', options1).format(date);
-    console.log(weekday);
-    workoutDates.push(`${weekday}`);
-    console.log(workoutDates)
+    if (workoutDates.includes(weekday)){
+    }
+    else {
+      workoutDates.push(`${weekday}`);
+    }
   })
   return workoutDates;
 }
