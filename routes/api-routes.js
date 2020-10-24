@@ -61,14 +61,13 @@ router.put('/api/workouts/:id', (req,res) => {
 
 // POST path to create new workout
 router.post("/api/workouts", (req,res) => {
-  console.log(req.params);
   const newWorkout = new Workout();
+  newWorkout.save();
   try{
-    const updated = newWorkout.save();
-    return res.status(200).send(updated)
+    return res.status(200).send(newWorkout);
   }
   catch (err) {
-    return res.status(500).send(err)
+    return res.status(500).send(err);
   }
   });
 
