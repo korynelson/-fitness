@@ -36,10 +36,11 @@ API.getWorkoutsInRange()
   }
 function populateChart(data) {
   let durations = duration(data);
+  let pieDurations = pieDuration(data);
+  let pieWeights = pieWeight(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   let dates = workoutDates(data);
-  console.log(dates);
   const colors = generatePalette();
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -142,7 +143,7 @@ function populateChart(data) {
         {
           label: "Excercises Performed",
           backgroundColor: colors,
-          data: durations
+          data: pieDurations,
         }
       ]
     },
@@ -162,7 +163,7 @@ function populateChart(data) {
         {
           label: "Excercises Performed",
           backgroundColor: colors,
-          data: pounds
+          data: pieWeights
         }
       ]
     },
@@ -233,3 +234,28 @@ function workoutDates(data){
   })
   return workoutDates;
 }
+
+function pieDuration(data) {
+  let durations = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      durations.push(exercise.duration);
+    });
+  });
+
+  return durations;
+}
+
+function pieWeight(data) {
+  let total = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      total.push(exercise.weight);
+    });
+  });
+
+  return total;
+}
+

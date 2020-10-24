@@ -65,7 +65,7 @@ router.post("/api/workouts", (req,res) => {
   const newWorkout = new Workout();
   try{
     const updated = newWorkout.save();
-  return res.status(200).send(updated)
+    return res.status(200).send(updated)
   }
   catch (err) {
     return res.status(500).send(err)
