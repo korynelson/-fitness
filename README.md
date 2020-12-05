@@ -25,6 +25,7 @@ Clone this repository and run command "npm install" to get dependencies
 ## Usage
 ### To run locally
 Enter the command "npm start" to start application and navigate to localhost:8080 in your browser
+*this assumes you have MongoDB already configured on your machine.  If you do not follow mongoDB documentaion to set up a database at [mongoDB](https://www.mongodb.com/)
 ### Use on Heroku
 [Heroku Application](https://hashtag-fitness.herokuapp.com)
 
