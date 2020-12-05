@@ -8,7 +8,7 @@ This application is a workout tracker.  The user is able to input various workou
 ![noteapp](./assets/images/hashtagFitnessHomepage.PNG)
 
 ### Workout Dashbard
-![noteapp](./assets/images/hashtagFitnessdashboard.PNG)
+![noteapp](./assets/images/hashtagFitnessDashboard.PNG)
 
 ## Table of Contents
 * [Installation](#installation)
